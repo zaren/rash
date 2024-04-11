@@ -11,7 +11,7 @@ This script is dependant on SSH private keys to function. See https://www.ssh.co
 
 repeating step 2 for wach machine you are managing.
 
-This script also relies on an external file ("machine_groups.txt" by default), formatted with each line containing a label for each group of machines you wish to manage, and IP numbers of those machines. The label must be a single string of text with no spaces, and the IP number will follow that, separated by spaces.
+This script also relies on an external file ("machine_groups.txt" by default), formatted with each line containing a label for each group of machines you wish to manage, and IP numbers of those machines. The label must be a single string of text with no spaces, and the IP number will follow that, separated by spaces. For example:
 
 ```
 North_Lab 192.168.1.2 192.168.1.3
