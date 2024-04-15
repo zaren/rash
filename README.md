@@ -4,7 +4,7 @@ RASH ("Remote Apple Shell Helper") is a script written to assist in the manageme
 
 ## Why?
 
-I do a lot of Mac management via shell commands or scripts. I've always used Apple's ARD (Apple Remote Desktop) software, but it's... not always reliable these days. It won't see machines that are clearly on the network, and which I can SSH into manually. This script allows me to do my shell-based work while bypassing ARD's problem of not seeing the machins.
+I do a lot of Mac management via shell commands or scripts. I've always used Apple's ARD (Apple Remote Desktop) software to send commands to groups of machines, but it's... not always reliable these days. It won't see machines that are clearly on the network, and which I can SSH into manually. This script allows me to do my shell-based work while bypassing ARD's problem of not seeing the machines.
 
 This script is dependant on SSH private keys to function. See https://www.ssh.com/academy/ssh/keygen for the full explanation of the process in creating and installing private keys, but in short, do the following:
 
