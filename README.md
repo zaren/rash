@@ -15,14 +15,14 @@ This script is dependant on SSH private keys to function. See https://www.ssh.co
 
 repeating step 2 for each machine you are managing.
 
-After ssh private keys are established, copy the rash.sh script and put it somewhere convenient on your machine. You can also either download the machine_groups.txt file and edit it, or create your own based on the displayed formatting. 
+After SSH private keys are installed, copy the rash.sh script, put it somewhere convenient on your machine, and "chmod +x" it to make sure it's executable. You can either download the machine_groups.txt file and edit it, or create your own based on the displayed formatting. By default, this file will reside in the same directory as the script. 
 
 ```
 North_Lab 192.168.1.2 192.168.1.3
 SouthLab 192.168.1.5 192.168.1.6 19.168.1.7
 ```
 
-By default, this file will reside in the same directory as the script. The script reads the first entry in each line as the name of that machine group, and processes the rest of the line as the IP adresses for that group.
+The script reads the first entry in each line as the name of that machine group (presented as "Available groups" when the script runs), and processes the rest of the line as the IP adresses for that group.
 
 ## Usage
 
