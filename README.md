@@ -15,7 +15,9 @@ repeating step 2 for each machine you are managing.
 
 This script also relies on an external file ("machine_groups.txt" by default), formatted with each line containing a label for each group of machines you wish to manage, and IP numbers of those machines. The label must be a single string of text with no spaces, and the IP number will follow that, separated by spaces. For example:
 
-> North_Lab 192.168.1.2 192.168.1.3
-> SouthLab 192.168.1.5 192.168.1.6 19.168.1.7
+```
+North_Lab 192.168.1.2 192.168.1.3
+SouthLab 192.168.1.5 192.168.1.6 19.168.1.7
+```
 
 By default, this file will reside in the same directory as the script.
