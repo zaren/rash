@@ -15,7 +15,7 @@ This script is dependant on SSH private keys to function. See https://www.ssh.co
 
 repeating step 2 for each machine you are managing.
 
-After SSH private keys are installed, copy the rash.sh script, put it somewhere convenient on your machine, and "chmod +x" it to make sure it's executable. You can either download the machine_groups.txt file and edit it, or create your own based on the displayed formatting. By default, this file will reside in the same directory as the script. 
+After SSH private keys are installed, copy the rash.sh script, put it somewhere convenient on your machine, and `chmod +x` it to make sure it's executable. You can either download the machine_groups.txt file and edit it, or create your own based on the displayed formatting. By default, this file will reside in the same directory as the script. 
 
 ```
 North_Lab 192.168.1.2 192.168.1.3
