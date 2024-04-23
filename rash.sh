@@ -18,7 +18,6 @@ execute_command() {
 
     echo "Executing command '$command_to_execute' on group $group_name..."
     for machine in "${machines[@]}"; do
-#        echo "Attempting to connect to machine $machine..."
         ssh_output=$(ssh -i "$private_key" -o ConnectTimeout=$timeout -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T "$username@$machine" "sudo $command_to_execute" 2>&1)
         ssh_exit_status=$?
 
@@ -32,7 +31,6 @@ execute_command() {
 
         # Print SSH output only if there's any
         if [ -n "$ssh_output" ]; then
-#            echo "Output from machine $machine:"
             echo "$ssh_output"
             echo " "
         fi
