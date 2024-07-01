@@ -56,3 +56,5 @@ An error occurred for machine 192.168.1.246.
 sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
 sudo: a password is required
 ```
+
+A variation of this script, rash_tabs.sh, will create a separate window for each machine it connects to, setting those up as tabs in a single window.
