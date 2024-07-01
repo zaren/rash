@@ -57,4 +57,4 @@ sudo: a terminal is required to read the password; either use the -S option to r
 sudo: a password is required
 ```
 
-A variation of this script, rash_tabs.sh, will create a separate window for each machine it connects to, setting those up as tabs in a single window.
+A variation of this script, rash_tabs.sh, will create a separate window for each machine it connects to, setting those up as tabs in a single window. It will also label each window with the IP address of the machine it connects to, to make it easier to manage the processes.
