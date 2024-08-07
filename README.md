@@ -57,7 +57,7 @@ sudo: a terminal is required to read the password; either use the -S option to r
 sudo: a password is required
 ```
 
-This will ALSO occur if you have not made a change to the `sudoers` file granting permission to execute commands. To fix this, issue the `sudo visuo` command and change the following entry:
+This will ALSO occur if you have not made a change to the `sudoers` file granting permission to execute commands. To fix this, issue the `sudo visudo` command and change the following entry:
 
 ```
 # root and users in group wheel can run anything on any machine as any user
