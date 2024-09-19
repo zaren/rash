@@ -10,12 +10,12 @@ I do a lot of Mac management via shell commands or scripts. I've always used App
 
 ### SSH keys
 
-This script is dependant on SSH private keys to function. See https://www.ssh.com/academy/ssh/keygen for the full explanation of the process of creating and installing private keys, but in short, do the following on your local / managing machine:
+This script is dependant on SSH private keys to function. See https://www.ssh.com/academy/ssh/keygen for the full explanation of the process of creating and installing private keys, but in short, issue the following commands on your local / managing machine:
 
 > 1) ssh-keygen
 > 2) ssh-copy-id -i ~/.ssh/your_key.pub user@host
 
-repeating step 2 for each machine you are managing.
+repeating step 2 with the public key that was generated in step 1 ("your_key.pub"), along with a local admin account ("user") and machine address ("host") of each machine you wish to manage.
 
 You will also need to make a change to the `sudoers` file on each remote machine granting permission to execute commands. To fix this, issue the `sudo visudo` command and change the following entry:
 
