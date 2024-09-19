@@ -10,7 +10,7 @@ I do a lot of Mac management via shell commands or scripts. I've always used App
 
 ### SSH keys
 
-This script is dependant on SSH private keys to function. See https://www.ssh.com/academy/ssh/keygen for the full explanation of the process of creating and installing private keys, but in short, do the following:
+This script is dependant on SSH private keys to function. See https://www.ssh.com/academy/ssh/keygen for the full explanation of the process of creating and installing private keys, but in short, do the following on your local / managing machine:
 
 > 1) ssh-keygen
 > 2) ssh-copy-id -i ~/.ssh/your_key.pub user@host
