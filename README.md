@@ -17,7 +17,7 @@ This script is dependant on SSH private keys to function. See https://www.ssh.co
 
 repeating step 2 with the public key that was generated in step 1 ("your_key.pub"), along with a local admin account ("user") and machine address ("host") of each machine you wish to manage.
 
-You will also need to make a change to the `sudoers` file on each remote machine granting permission to execute commands. To fix this, issue the `sudo visudo` command and change the following entry:
+You will also need to make a change to the `sudoers` file on each remote machine granting permission to execute commands. To fix this, ssh to each machine you wish to manage, issue the `sudo visudo` command, and change the following entry:
 
 ```
 # root and users in group wheel can run anything on any machine as any user
@@ -25,7 +25,7 @@ root            ALL = (ALL) ALL
 %admin          ALL = (ALL) ALL
 ```
 
-to read:
+to read as follows:
 
 ```
 # root and users in group wheel can run anything on any machine as any user
