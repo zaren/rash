@@ -50,12 +50,19 @@ SouthLab 192.168.1.5 192.168.1.6 19.168.1.7
 
 The script reads the first entry in each line as the name of that machine group (presented as "Available groups" when the script runs), and processes the rest of the line as the IP adresses for that group.
 
+When you run the script, you will be prompted to receive your output in either a single window, or in multiple tabs. The single window option has a built-in 15 second failover before moving to the next machine on the list, while the multiple tabs option executes each command simultanously.
+
 ## Usage
 
 Execute the script, and follow the prompts as shown in the example below:
 
 ```
-bash-3.2$ ./rash.sh 
+bash-3.2$ ./rash.sh
+
+---===### ###===---
+
+Display command output in 1) A single window or 2) Separate tabs? 
+
 Available groups:
 1. North_Lab
 2. SouthLab
@@ -68,7 +75,7 @@ Command executed successfully on machine 192.168.1.2.
 Command executed successfully on machine 192.168.1.3.
 /Users/admin
 
-Done with group North_Lab.
+Done with group North_Lab. Exiting script.
 ```
 
 ### Fiddly bits
@@ -83,4 +90,4 @@ sudo: a terminal is required to read the password; either use the -S option to r
 sudo: a password is required
 ```
 
-A variation of this script, rash_tabs.sh, will create a separate window for each machine it connects to, setting those up as tabs in a single window. It will also label each window with the IP address of the machine it connects to, to make it easier to manage the processes.
+Also, if you prefer to always have your output in either a single window or multiple tabs, I broke those features out in two additional scripts, `rash_single.sh` and `rash_tabs.sh`. Use then as you see fit.
