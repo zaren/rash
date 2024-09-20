@@ -6,10 +6,21 @@ private_key="$HOME/.ssh/id_rsa"
 # Path to the file with machine groups
 machine_groups_file="machine_groups.txt"
 
+### Fiddly bits for prettier viewing
+echo ""
+echo "---===### ###===---"
+echo ""
+
+# Prompt user for single window or tabbed output
+read -p "Display command output in 1) A single window or 2) Separate tabs? " s_o_t
+
 # Function to execute command on a group of machines
+if [ $s_o_t -eq 1 ]; then
+
 execute_command() {
     group_name="$1"
     command_to_execute="$2"
+    sin_or_tab="$3"
     shift 2
     machines=("$@")
 
@@ -36,8 +47,40 @@ execute_command() {
         fi
     done
 
-    echo "Done with group $group_name."
+    echo "Done with group $group_name. Exiting script."
 }
+
+else
+
+execute_command() {
+    group_name="$1"
+    command_to_execute="$2"
+    sin_or_tab="$3"
+    shift 2
+    machines=("$@")
+
+    echo "Executing command '$command_to_execute' on group $group_name..."
+    for machine in "${machines[@]}"; do
+        # AppleScript to open a new Terminal tab, run the SSH command, and set the tab title
+        osascript <<EOF
+tell application "Terminal"
+    if not (exists window 1) then
+        do script "ssh -i \"$private_key\" -o ConnectTimeout=15 -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T \"$username@$machine\" \"sudo $command_to_execute\""
+        set currentTab to tab 1 of window 1
+        set currentTab's custom title to "$machine"
+    else
+        tell application "System Events" to tell process "Terminal" to keystroke "t" using command down
+        set currentTab to tab -1 of window 1
+        do script "ssh -i \"$private_key\" -o ConnectTimeout=15 -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T \"$username@$machine\" \"sudo $command_to_execute\"" in currentTab
+        set currentTab's custom title to "$machine"
+    end if
+end tell
+EOF
+    done
+
+    echo "Done with group $group_name. Exiting script."
+}
+fi
 
 # Read username from external file
 username_file="admin_account.txt"
@@ -68,6 +111,7 @@ while IFS= read -r line; do
     index=$((index+1))
 done < "$machine_groups_file"
 
+### ---  Start of UI  --- ###
 # Prompt user to select a group
 echo "Available groups:"
 for i in "${!group_names[@]}"; do

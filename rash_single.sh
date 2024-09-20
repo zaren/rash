@@ -18,23 +18,27 @@ execute_command() {
     shift 2
     machines=("$@")
 
+    # Set timeout in seconds
+    timeout="15"
+
     echo "Executing command '$command_to_execute' on group $group_name..."
     for machine in "${machines[@]}"; do
-        # AppleScript to open a new Terminal tab, run the SSH command, and set the tab title
-        osascript <<EOF
-tell application "Terminal"
-    if not (exists window 1) then
-        do script "ssh -i \"$private_key\" -o ConnectTimeout=15 -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T \"$username@$machine\" \"sudo $command_to_execute\""
-        set currentTab to tab 1 of window 1
-        set currentTab's custom title to "$machine"
-    else
-        tell application "System Events" to tell process "Terminal" to keystroke "t" using command down
-        set currentTab to tab -1 of window 1
-        do script "ssh -i \"$private_key\" -o ConnectTimeout=15 -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T \"$username@$machine\" \"sudo $command_to_execute\"" in currentTab
-        set currentTab's custom title to "$machine"
-    end if
-end tell
-EOF
+        ssh_output=$(ssh -i "$private_key" -o ConnectTimeout=$timeout -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o LogLevel=ERROR -q -T "$username@$machine" "sudo $command_to_execute" 2>&1)
+        ssh_exit_status=$?
+
+        if [[ $ssh_exit_status -eq 0 ]]; then
+             echo "Command executed successfully on machine $machine."
+        elif [[ $ssh_exit_status -eq 255 ]]; then
+            echo "Connection timed out or failed for machine $machine."
+        else
+            echo "An error occurred for machine $machine."
+        fi
+
+        # Print SSH output only if there's any
+        if [ -n "$ssh_output" ]; then
+            echo "$ssh_output"
+            echo " "
+        fi
     done
 
     echo "Done with group $group_name. Exiting script."
