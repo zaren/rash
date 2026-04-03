@@ -91,7 +91,7 @@ struct ContentView: View {
             Button("Open Settings…") { showingSettings = true }
                 .font(.caption)
                 .buttonStyle(.borderless)
-                .foregroundStyle(.accentColor)
+                .foregroundStyle(Color.accentColor)
         }
         .padding(10)
         .frame(maxWidth: .infinity, alignment: .leading)
