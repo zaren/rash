@@ -293,7 +293,7 @@ struct ResultRowView: View {
             HStack {
                 Image(systemName: iconName)
                     .foregroundStyle(statusColor)
-                Text(result.machine)
+                Text(result.displayName)
                     .fontWeight(.semibold)
                 Spacer()
                 Text(result.statusLabel)
@@ -321,19 +321,21 @@ struct ResultRowView: View {
 
     private var iconName: String {
         switch result.status {
-        case .running:  return "clock"
-        case .success:  return "checkmark.circle.fill"
-        case .timeout:  return "exclamationmark.triangle.fill"
-        case .failure:  return "xmark.circle.fill"
+        case .running:      return "clock"
+        case .success:      return "checkmark.circle.fill"
+        case .timeout:      return "exclamationmark.triangle.fill"
+        case .authFailure:  return "key.slash"
+        case .failure:      return "xmark.circle.fill"
         }
     }
 
     private var statusColor: Color {
         switch result.status {
-        case .running:  return .secondary
-        case .success:  return .green
-        case .timeout:  return .orange
-        case .failure:  return .red
+        case .running:      return .secondary
+        case .success:      return .green
+        case .timeout:      return .orange
+        case .authFailure:  return .red
+        case .failure:      return .red
         }
     }
 }

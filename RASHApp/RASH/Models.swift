@@ -19,6 +19,7 @@ enum ResultStatus {
     case running
     case success
     case timeout
+    case authFailure
     case failure(Int32)
 }
 
@@ -29,12 +30,22 @@ struct MachineResult: Identifiable {
     let machine: String
     var output: String
     var status: ResultStatus
+    var resolvedName: String?
+
+    /// Display name: "hostname (ip)" when DNS resolves, plain IP otherwise.
+    var displayName: String {
+        if let resolved = resolvedName, resolved != machine {
+            return "\(resolved) (\(machine))"
+        }
+        return machine
+    }
 
     var statusLabel: String {
         switch status {
         case .running:          return "Running…"
         case .success:          return "✓  Success"
         case .timeout:          return "⚡  Timeout"
+        case .authFailure:      return "✗  Auth Failed"
         case .failure(let c):   return "✗  Error (\(c))"
         }
     }
