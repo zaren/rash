@@ -38,7 +38,7 @@ class GroupStore: ObservableObject {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "groupsFilePath")
-            objectWillChange.send()
+            load()
         }
     }
 
