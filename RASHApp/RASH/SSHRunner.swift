@@ -85,7 +85,7 @@ class SSHRunner: ObservableObject {
             "-o", "StrictHostKeyChecking=no",
             "-o", "PasswordAuthentication=no",
             "-o", "LogLevel=ERROR",
-            "-q", "-T",
+            "-T",
             "\(username)@\(host)",
             "sudo \(command)"
         ]
