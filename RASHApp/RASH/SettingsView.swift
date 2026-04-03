@@ -30,6 +30,11 @@ struct SettingsView: View {
             filePathDraft = groupStore.filePath
             reloadText()
         }
+        .onDisappear {
+            if !filePathDraft.isEmpty {
+                groupStore.filePath = filePathDraft
+            }
+        }
     }
 
     // MARK: - Connection tab

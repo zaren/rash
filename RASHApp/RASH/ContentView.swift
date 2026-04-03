@@ -32,7 +32,7 @@ struct ContentView: View {
         .sheet(isPresented: $showingAddGroup) {
             addGroupSheet
         }
-        .sheet(isPresented: $showingSettings) {
+        .sheet(isPresented: $showingSettings, onDismiss: { groupStore.load() }) {
             SettingsView()
                 .environmentObject(groupStore)
         }
