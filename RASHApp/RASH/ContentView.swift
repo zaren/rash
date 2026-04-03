@@ -41,22 +41,27 @@ struct ContentView: View {
     // MARK: - Sidebar
 
     private var sidebarView: some View {
-        List(groupStore.groups, selection: $selectedGroupID) { group in
-            VStack(alignment: .leading, spacing: 2) {
-                Text(group.name)
-                    .fontWeight(.medium)
-                Text(group.hosts.count == 1
-                     ? "1 host"
-                     : "\(group.hosts.count) hosts")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+        VStack(spacing: 0) {
+            if groupStore.fileNotFound {
+                fileNotFoundBanner
             }
-            .tag(group.id)
-            .contextMenu {
-                Button(role: .destructive) {
-                    deleteGroup(group)
-                } label: {
-                    Label("Delete Group", systemImage: "trash")
+            List(groupStore.groups, selection: $selectedGroupID) { group in
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(group.name)
+                        .fontWeight(.medium)
+                    Text(group.hosts.count == 1
+                         ? "1 host"
+                         : "\(group.hosts.count) hosts")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .tag(group.id)
+                .contextMenu {
+                    Button(role: .destructive) {
+                        deleteGroup(group)
+                    } label: {
+                        Label("Delete Group", systemImage: "trash")
+                    }
                 }
             }
         }
@@ -73,6 +78,24 @@ struct ContentView: View {
                 .help("Add a machine group")
             }
         }
+    }
+
+    private var fileNotFoundBanner: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label("machine_groups.txt not found", systemImage: "exclamationmark.triangle.fill")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(.orange)
+            Text("Place the file next to the app, or set its path in Settings.")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            Button("Open Settings…") { showingSettings = true }
+                .font(.caption)
+                .buttonStyle(.borderless)
+                .foregroundStyle(.accentColor)
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.orange.opacity(0.10))
     }
 
     // MARK: - Detail
