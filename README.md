@@ -90,4 +90,24 @@ sudo: a terminal is required to read the password; either use the -S option to r
 sudo: a password is required
 ```
 
-Also, if you prefer to always have your output in either a single window or multiple tabs, I broke those features out in two additional scripts, `rash_single.sh` and `rash_tabs.sh`. Use then as you see fit.
+Also, if you prefer to always have your output in either a single window or multiple tabs, I broke those features out in two additional scripts, `rash_single.sh` and `rash_tabs.sh`. Use them as you see fit.
+
+## GUI
+
+A graphical front-end is available as `rash_gui.py`. It provides the same functionality as the shell scripts in a point-and-click window, with no extra dependencies beyond Python 3 and Tkinter (both ship with macOS).
+
+### Features
+
+- **Group selector** — left-hand list populated automatically from `machine_groups.txt`
+- **SSH key & username** — pre-filled from `~/.ssh/id_rsa` and `admin_account.txt`; editable at any time
+- **Command entry** — type a command and press Return or click **▶ Run**
+- **Colour-coded output** — success (teal), timeout (orange), and error (red) results stream in as machines respond; commands run in parallel across all machines in the selected group
+- **Settings editor** — click **⚙ Settings** to edit `machine_groups.txt` directly inside the app, then save to reload the group list immediately
+
+### Usage
+
+```
+python3 rash_gui.py
+```
+
+The script must be run from the directory that contains `machine_groups.txt`, or the file must exist alongside `rash_gui.py`.
