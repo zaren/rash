@@ -313,7 +313,7 @@ class RashApp:
 
         tk.Button(
             left, text="＋  Add Group", command=self._open_add_group
-        ).pack(fill=tk.X, pady=(6, 0))
+        ).pack(fill=tk.X, pady=(2, 0))
 
         tk.Button(
             left, text="⚙  Settings", command=self._open_settings
