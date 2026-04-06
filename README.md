@@ -90,4 +90,50 @@ sudo: a terminal is required to read the password; either use the -S option to r
 sudo: a password is required
 ```
 
-Also, if you prefer to always have your output in either a single window or multiple tabs, I broke those features out in two additional scripts, `rash_single.sh` and `rash_tabs.sh`. Use then as you see fit.
+Also, if you prefer to always have your output in either a single window or multiple tabs, I broke those features out in two additional scripts, `rash_single.sh` and `rash_tabs.sh`. Use them as you see fit.
+
+## GUI
+
+### Python / Tkinter (`rash_gui.py`)
+
+A lightweight graphical front-end with no extra dependencies beyond Python 3 and Tkinter (both ship with macOS).
+
+#### Features
+
+- **Group selector** — left-hand list populated automatically from `machine_groups.txt`
+- **SSH key & username** — pre-filled from `~/.ssh/id_rsa` and `admin_account.txt`; editable at any time
+- **Command entry** — type a command and press Return or click **▶ Run**
+- **Colour-coded output** — success (teal), timeout (orange), and error (red) results stream in as machines respond; commands run in parallel across all machines in the selected group
+- **Settings editor** — click **⚙ Settings** to edit `machine_groups.txt` directly inside the app, then save to reload the group list immediately
+
+#### Usage
+
+```
+python3 rash_gui.py
+```
+
+The script must be run from the directory that contains `machine_groups.txt`, or the file must exist alongside `rash_gui.py`.
+
+---
+
+### Native macOS SwiftUI App (`RASHApp/`)
+
+A full native macOS app built with SwiftUI. **Requires Xcode 15+ and macOS 13+.**
+
+#### Features
+
+- **Sidebar** — list of machine groups with host count; right-click to delete; **+** button to add a new group inline
+- **SSH configuration bar** — SSH key path and admin username, editable directly in the toolbar strip (persisted between launches)
+- **Command bar** — enter a command and press Return or click **Run**; all machines in the group are contacted in parallel with the same SSH flags as the Bash scripts (`ConnectTimeout=15`, `StrictHostKeyChecking=no`, `PasswordAuthentication=no`, `LogLevel=ERROR`, `sudo` prefix)
+- **Output pane** — scrollable list of per-machine result cards, colour-coded: ✓ green (success), ⚡ orange (timeout), ✗ red (error), with raw command output shown below each status badge
+- **Settings sheet** — two-tab panel for SSH key/username and for viewing, editing, or relocating `machine_groups.txt`; includes a Browse button and an inline text editor
+- **⌘⇧R** — reload groups from disk at any time
+
+#### Usage
+
+1. Open `RASHApp/RASH.xcodeproj` in Xcode.
+2. Select the **RASH** scheme, choose **My Mac** as the destination.
+3. Press **⌘R** to build and run.
+4. On first launch, open **Settings** (gear icon in the sidebar toolbar) and point the app at your `machine_groups.txt` file.
+
+> **Note:** The app sandbox is disabled in `RASHApp.entitlements` so that the app can spawn `/usr/bin/ssh` and read `~/.ssh/id_rsa`. The app is therefore **not** suitable for Mac App Store distribution.

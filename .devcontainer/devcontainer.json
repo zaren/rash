@@ -1,0 +1,37 @@
+{
+  "name": "RASH Dev",
+
+  // Official Swift image (5.10, Ubuntu 22.04) gives us the Swift toolchain,
+  // swiftc, swift-package, and the Swift standard library out of the box.
+  "image": "swift:5.10-jammy",
+
+  "features": {
+    // Add Python 3.12 on top of the Swift base image
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+
+  // python3-tk  — Tkinter runtime (not bundled with the Python feature)
+  // libx11-dev  — X11 headers needed by Tkinter on Linux
+  "onCreateCommand": "apt-get update && apt-get install -y python3-tk libx11-dev",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "sswg.swift-lang"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  // Pass DISPLAY through so Tkinter windows can be forwarded via XQuartz / X11
+  "remoteEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}"
+  }
+}
