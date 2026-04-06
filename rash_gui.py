@@ -119,6 +119,67 @@ def ssh_worker(
 # ---------------------------------------------------------------------------
 
 
+class AddGroupDialog(tk.Toplevel):
+    """Small modal dialog for adding a new machine group."""
+
+    def __init__(self, parent: RashApp) -> None:
+        super().__init__(parent.root)
+        self._parent = parent
+        self.title("Add Group")
+        self.resizable(False, False)
+        self.grab_set()
+
+        tk.Label(self, text="Group name:").grid(
+            row=0, column=0, padx=(12, 4), pady=(12, 4), sticky="e"
+        )
+        self._name_var = tk.StringVar()
+        tk.Entry(self, textvariable=self._name_var, width=24).grid(
+            row=0, column=1, padx=(0, 12), pady=(12, 4), sticky="ew"
+        )
+
+        tk.Label(self, text="Machines\n(space-separated IPs):").grid(
+            row=1, column=0, padx=(12, 4), pady=4, sticky="ne"
+        )
+        self._machines_text = tk.Text(self, width=32, height=4, font=("Courier", 12))
+        self._machines_text.grid(row=1, column=1, padx=(0, 12), pady=4, sticky="ew")
+
+        btn_frame = tk.Frame(self)
+        btn_frame.grid(row=2, column=0, columnspan=2, padx=12, pady=(4, 12), sticky="e")
+        tk.Button(btn_frame, text="Cancel", width=8, command=self.destroy).pack(
+            side=tk.RIGHT, padx=(4, 0)
+        )
+        tk.Button(btn_frame, text="Add", width=8, command=self._add).pack(side=tk.RIGHT)
+
+        self.columnconfigure(1, weight=1)
+
+    def _add(self) -> None:
+        name = self._name_var.get().strip()
+        machines_raw = self._machines_text.get("1.0", tk.END).strip()
+        if not name:
+            messagebox.showwarning("Missing Name", "Please enter a group name.", parent=self)
+            return
+        machines = machines_raw.split()
+        if not machines:
+            messagebox.showwarning(
+                "Missing Machines", "Please enter at least one IP/hostname.", parent=self
+            )
+            return
+        # Append the new group to machine_groups.txt
+        line = name + "  " + "  ".join(machines) + "\n"
+        with open(MACHINE_GROUPS_FILE, "a") as fh:
+            fh.write(line)
+        self._parent.reload_groups()
+        # Select the newly added group in the listbox
+        items = list(self._parent._groups.keys())
+        if name in items:
+            idx = items.index(name)
+            self._parent._group_listbox.selection_clear(0, tk.END)
+            self._parent._group_listbox.selection_set(idx)
+            self._parent._group_listbox.see(idx)
+            self._parent._on_group_select()
+        self.destroy()
+
+
 class SettingsWindow(tk.Toplevel):
     """Modal-style window for editing machine_groups.txt inline."""
 
@@ -251,8 +312,12 @@ class RashApp:
         self._group_listbox.bind("<<ListboxSelect>>", self._on_group_select)
 
         tk.Button(
-            left, text="⚙  Settings", command=self._open_settings
+            left, text="＋  Add Group", command=self._open_add_group
         ).pack(fill=tk.X, pady=(6, 0))
+
+        tk.Button(
+            left, text="⚙  Settings", command=self._open_settings
+        ).pack(fill=tk.X, pady=(4, 0))
 
         ttk.Separator(main, orient="vertical").pack(
             side=tk.LEFT, fill=tk.Y, padx=(0, 8)
@@ -337,6 +402,9 @@ class RashApp:
 
     def _open_settings(self) -> None:
         SettingsWindow(self)
+
+    def _open_add_group(self) -> None:
+        AddGroupDialog(self)
 
     # ------------------------------------------------------------------
     # Run command
