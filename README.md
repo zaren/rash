@@ -1,3 +1,5 @@
+# (Re-tool and GUI-fication coming this summer! Watch this space!)
+
 # RASH
 
 RASH ("Remote Apple Shell Helper") is a Bash script written to assist in the management of macOS computers. It is designed to execute a shell command on a specified group of machines.
