@@ -58,7 +58,7 @@ SouthLab 192.168.1.5 192.168.1.6 19.168.1.7
 
 A sample machine_groups.txt file is included with the download that you can edit, or you can create your own based on the displayed formatting. This file is intended to live in the same directory as the command line script by default, but it can be located anywhere you like with the GUI app, as you will have to locate it within the app during setup.
 
-## Usage - command line
+## Usage - command line (RASH_CLI)
 
 When you run the script, you will be prompted to receive your output in either a single window, or in multiple tabs. The single window option has a built-in 15 second failover before moving to the next machine on the list, while the multiple tabs option executes each command simultanously.
 
@@ -86,7 +86,7 @@ Command executed successfully on machine 192.168.1.3.
 Done with group North_Lab. Exiting script.
 ```
 
-## Usage - GUI
+## Usage - graphical interface (RASH_GUI)
 
 The first time you launch the app, you should see the following interface. The message in the upper left indicates that it cannot find the groups file.
 
