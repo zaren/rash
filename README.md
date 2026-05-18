@@ -1,4 +1,5 @@
-# RASH
+# RASH <img width="128" height="128" alt="image" src="https://github.com/user-attachments/assets/68444693-5ecc-45fa-bcbb-67bf1fbad547" />
+
 
 RASH ("Remote Apple Shell Helper") is a script and application written to assist in the management of macOS computers. It is designed to execute a shell command as a local admin user on a specified group of machines. It is available as both scripts to run from the command line, as well as a point-and-click GUI app, to run as you prefer.
 
