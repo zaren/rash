@@ -120,8 +120,7 @@ Once you select a group, you will see the command entry field appear.
 
 From here, you can type in a command (no "sudo" needed) and then either hit "Return" on your keyboard or click the "Run" button.
 
-<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/45cd0840-4af7-440a-93d3-96cfc278ac73" />
-
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/f210d2c2-9b64-4057-82fb-fd5fae97e2a7" />
 
 ### Fiddly bits
 
