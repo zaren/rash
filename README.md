@@ -1,6 +1,6 @@
 # RASH
 
-RASH ("Remote Apple Shell Helper") is a Bash script written to assist in the management of macOS computers. It is designed to execute a shell command on a specified group of machines. It is available as both scripts to run from the command line, as well as a point-and-click GUI app, to run as you prefer.
+RASH ("Remote Apple Shell Helper") is a script and application written to assist in the management of macOS computers. It is designed to execute a shell command on a specified group of machines. It is available as both scripts to run from the command line, as well as a point-and-click GUI app, to run as you prefer.
 
 ## Why?
 
