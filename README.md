@@ -1,6 +1,6 @@
 # RASH
 
-RASH ("Remote Apple Shell Helper") is a script and application written to assist in the management of macOS computers. It is designed to execute a shell command on a specified group of machines. It is available as both scripts to run from the command line, as well as a point-and-click GUI app, to run as you prefer.
+RASH ("Remote Apple Shell Helper") is a script and application written to assist in the management of macOS computers. It is designed to execute a shell command as a local admin user on a specified group of machines. It is available as both scripts to run from the command line, as well as a point-and-click GUI app, to run as you prefer.
 
 ## Why?
 
@@ -90,21 +90,37 @@ Done with group North_Lab. Exiting script.
 
 The first time you launch the app, you should see the following interface. The message in the upper left indicates that it cannot find the groups file.
 
-<img width="820" height="612" alt="image" src="https://github.com/user-attachments/assets/37e4a713-7450-4b72-ac3d-b8f1f2ffcaba" style="border: 1px solid black;" />
+<img width="820" height="612" alt="image" src="https://github.com/user-attachments/assets/37e4a713-7450-4b72-ac3d-b8f1f2ffcaba"  />
 
 Click the gear icon in that space, and you will find your preferences to configure in two tabs. 
 
-In the Connections tab, you will confirm the location of the public SSH key you generated, along with the name of the admin account that will be executing the commands you are sending.
+In the Connections tab, you will confirm the location of the public SSH key you generated, along with the name of the local admin account that will be executing the commands you are sending.
 
-<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/89b38362-5f0c-4f14-87b3-41df6201acfe" style="border: 1px solid black;" />
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/89b38362-5f0c-4f14-87b3-41df6201acfe"  />
 
-In the Group Files tab, you will find a default path to confirm for the groups file, and a blank space that can be used to edit the file.
+In the Group Files tab, you will find a default path to confirm for the groups file location, and a blank space that can be used to edit the file.
 
-<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/67260436-9b76-4df4-aa54-49670340736c" style="border: 1px solid black;" />
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/67260436-9b76-4df4-aa54-49670340736c"  />
 
-You can copy and paste a `machine_groups.txt` file into this space, click Save, and then the X in the upper right to close the window.
+You can copy and paste a `machine_groups.txt` file into this space or type it in manually in this space. Once the data is entered, click "Save", and then the X in the upper right to close the window.
 
-<img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/7d7e4d81-58ce-47a8-94ea-510a77ca9775" style="border: 1px solid black;" />
+<img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/7d7e4d81-58ce-47a8-94ea-510a77ca9775"  />
+
+(The "Browse..." button is there to locate and load a groups file from another location, and the "Reload" button is to be used if further changes are made to the file.)
+
+Once the groups file is loaded, the app will populate the groups on the left side of the window. You will also see an "+ Add Group" button on the lower left, which can be used to make additions to the groups list.
+
+<img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/d51e3a2e-ca1b-452e-907c-5b2c591f1e16" />
+
+<img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/705ac480-47f8-4d12-bf01-dbcb28b9768e" />
+
+Once you select a group, you will see the command entry field appear.
+
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/7a83552e-9a4f-4d9a-87dc-03cd12cfda6b" />
+
+From here, you can type in a command (no "sudo" needed) and then either hit "Return" on your keyboard or click the "Run" button.
+
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/45cd0840-4af7-440a-93d3-96cfc278ac73" />
 
 
 ### Fiddly bits
