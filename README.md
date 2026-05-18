@@ -90,21 +90,21 @@ Done with group North_Lab. Exiting script.
 
 The first time you launch the app, you should see the following interface. The message in the upper left indicates that it cannot find the groups file.
 
-<img width="820" height="612" alt="image" src="https://github.com/user-attachments/assets/37e4a713-7450-4b72-ac3d-b8f1f2ffcaba" /></kbd>
+<img width="820" height="612" alt="image" src="https://github.com/user-attachments/assets/37e4a713-7450-4b72-ac3d-b8f1f2ffcaba" style="border: 1px solid black;" />
 
 Click the gear icon in that space, and you will find your preferences to configure in two tabs. 
 
 In the Connections tab, you will confirm the location of the public SSH key you generated, along with the name of the admin account that will be executing the commands you are sending.
 
-<kbd><img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/89b38362-5f0c-4f14-87b3-41df6201acfe" /></kbd>
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/89b38362-5f0c-4f14-87b3-41df6201acfe" style="border: 1px solid black;" />
 
 In the Group Files tab, you will find a default path to confirm for the groups file, and a blank space that can be used to edit the file.
 
-<kbd><img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/67260436-9b76-4df4-aa54-49670340736c" /></kbd>
+<img width="996" height="612" alt="image" src="https://github.com/user-attachments/assets/67260436-9b76-4df4-aa54-49670340736c" style="border: 1px solid black;" />
 
 You can copy and paste a `machine_groups.txt` file into this space, click Save, and then the X in the upper right to close the window.
 
-<kbd><img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/7d7e4d81-58ce-47a8-94ea-510a77ca9775" /></kbd>
+<img width="932" height="612" alt="image" src="https://github.com/user-attachments/assets/7d7e4d81-58ce-47a8-94ea-510a77ca9775" style="border: 1px solid black;" />
 
 
 ### Fiddly bits
